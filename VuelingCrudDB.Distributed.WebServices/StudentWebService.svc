@@ -1,0 +1,3 @@
+﻿<%@ ServiceHost Language="C#" Debug="true"
+    Service="VuelingCrudDB.Distributed.WebServices.Contracts.IStudentWebService, VuelingCrudDB.Distributed.WebServices"
+    Factory="Autofac.Integration.Wcf.AutofacServiceHostFactory, Autofac.Integration.Wcf" %>
