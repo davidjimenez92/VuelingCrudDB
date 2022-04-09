@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VuelingCrudDB.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VuelingCrudDB.CrossCutting.ProjectSettings", "VuelingCrudDB.CrossCutting.ProjectSettings\VuelingCrudDB.CrossCutting.ProjectSettings.csproj", "{D4EFA63A-D536-44BE-9E8B-4D7230619191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VuelingCrudDB.Infrastructure.RepositoriesUnitTests", "VuelingCrudDB.Infrastructure.RepositoriesUnitTests\VuelingCrudDB.Infrastructure.RepositoriesUnitTests.csproj", "{52BC4F4D-4B83-43F8-A2BA-E2F049F8819C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{D4EFA63A-D536-44BE-9E8B-4D7230619191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4EFA63A-D536-44BE-9E8B-4D7230619191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4EFA63A-D536-44BE-9E8B-4D7230619191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52BC4F4D-4B83-43F8-A2BA-E2F049F8819C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52BC4F4D-4B83-43F8-A2BA-E2F049F8819C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52BC4F4D-4B83-43F8-A2BA-E2F049F8819C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52BC4F4D-4B83-43F8-A2BA-E2F049F8819C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
