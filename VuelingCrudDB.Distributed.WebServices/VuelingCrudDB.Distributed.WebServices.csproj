@@ -79,6 +79,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204101516021_InitalCreate.cs" />
+    <Compile Include="Migrations\202204101516021_InitalCreate.designer.cs">
+      <DependentUpon>202204101516021_InitalCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="StudentWebService.svc.cs">
       <DependentUpon>StudentWebService.svc</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -127,6 +132,11 @@
       <Project>{2E511A51-8574-4C1D-B543-4C6FAA91C63D}</Project>
       <Name>VuelingCrudDB.Domain.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202204101516021_InitalCreate.resx">
+      <DependentUpon>202204101516021_InitalCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
