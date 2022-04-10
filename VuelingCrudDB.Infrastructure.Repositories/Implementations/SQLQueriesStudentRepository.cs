@@ -70,6 +70,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                     var command = new SqlCommand(QueriesResources.DeleteQuery, connection);
                     command.Parameters.AddWithValue("@Id", entity.Id);
 
+                    connection.Open();
                     command.ExecuteNonQuery();
                     return true;
                 }
@@ -85,7 +86,6 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (InvalidCastException ex)
                 {
-                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (IOException ex)
@@ -106,12 +106,14 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 {
                     using (SqlCommand command = new SqlCommand(QueriesResources.GetAllQuery, connection))
                     {
+                        connection.Open();
                         var reader = command.ExecuteReader();
                         int ordId = reader.GetOrdinal("Id");
                         int ordGuid = reader.GetOrdinal("Guid");
                         int ordName = reader.GetOrdinal("Name");
                         int ordSurname = reader.GetOrdinal("Surname");
 
+                        
                         while (reader.Read())
                         {
                             var student = new Student()
@@ -175,7 +177,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (SqlException ex)
                 {
-                    //_log.Error(ex.Message);
+                   // _log.Error(ex.Message);
                     throw;
                 }
                 catch (InvalidCastException ex)

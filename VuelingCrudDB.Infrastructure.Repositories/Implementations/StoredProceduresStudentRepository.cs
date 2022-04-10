@@ -15,26 +15,26 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 {
     public class StoredProceduresStudentRepository : IStudentRepository<Student>
     {
-        private readonly ILog _log;
+        //private readonly ILog _log;
         private readonly string connectionString = ConfigurationManager.AppSettings["connectionString"];
 
-        public StoredProceduresStudentRepository(ILog log)
+        public StoredProceduresStudentRepository()
         {
-            _log = log;
+            //_log = log;
         }
                   
         public Student Add(Student entity)
         {
-            _log.Info(entity);
+            //_log.Info(entity);
             using (var connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     SqlCommand command = new SqlCommand(QueriesResources.AddProcedure, connection);
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@studentGuid", entity.Guid);
-                    command.Parameters.AddWithValue("@studentName", entity.Name);
-                    command.Parameters.AddWithValue("@studentSurname", entity.Surname);
+                    command.Parameters.AddWithValue("@stdGuid", entity.Guid);
+                    command.Parameters.AddWithValue("@stdName", entity.Name);
+                    command.Parameters.AddWithValue("stdSurname", entity.Surname);
 
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -42,22 +42,22 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (IOException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
 
@@ -66,7 +66,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 
         public bool Delete(Student entity)
         {
-            _log.Info(entity);
+            //_log.Info(entity);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -74,29 +74,30 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 {
                     var command = new SqlCommand(QueriesResources.DeleteProcedure, connection);
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@Id", entity.Id);
+                    command.Parameters.AddWithValue("@stdId", entity.Id);
 
+                    connection.Open();
                     command.ExecuteNonQuery();
                     return true;
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (IOException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
 
@@ -112,6 +113,8 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 {
                     using (SqlCommand command = new SqlCommand(QueriesResources.GetAllProcedure, connection))
                     {
+                        connection.Open();
+
                         command.CommandType = CommandType.StoredProcedure;
                         var reader = command.ExecuteReader();
                         int ordId = reader.GetOrdinal("Id");
@@ -136,22 +139,22 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (IOException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
             }
@@ -159,7 +162,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 
         public Student Update(Student entity)
         {
-            _log.Info(entity);
+            //_log.Info(entity);
 
             using (var connection = new SqlConnection(connectionString))
             {
@@ -167,9 +170,9 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 {
                     SqlCommand command = new SqlCommand(QueriesResources.UpdateProcedure, connection);
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@studentGuid", entity.Guid);
-                    command.Parameters.AddWithValue("@studentName", entity.Name);
-                    command.Parameters.AddWithValue("@studentSurname", entity.Surname);
+                    command.Parameters.AddWithValue("@stdId", entity.Id);
+                    command.Parameters.AddWithValue("@stdName", entity.Name);
+                    command.Parameters.AddWithValue("@stdSurname", entity.Surname);
 
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -177,22 +180,22 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {                    
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
                 catch (IOException ex)
                 {                    
-                    _log.Error(ex);
+                    //_log.Error(ex);
                     throw;
                 }
 
