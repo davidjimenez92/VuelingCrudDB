@@ -9,6 +9,7 @@ namespace VuelingCrudDB.CrossCutting.ProjectSettings
     public enum EnumTypes
     {
         SqlQueries,
-        StoredProcedures
+        StoredProcedures,
+        EntityFrameworkCF
     }
 }
