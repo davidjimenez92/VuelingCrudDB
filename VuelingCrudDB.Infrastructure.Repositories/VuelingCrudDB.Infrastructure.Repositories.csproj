@@ -51,6 +51,7 @@
     <Compile Include="Contracts\IRead.cs" />
     <Compile Include="Contracts\IStudentRepository.cs" />
     <Compile Include="Contracts\IUpdate.cs" />
+    <Compile Include="Implementations\EFCFStudentRepository.cs" />
     <Compile Include="Implementations\SQLQueriesStudentRepository.cs" />
     <Compile Include="Implementations\StoredProceduresStudentRepository.cs" />
     <Compile Include="Implementations\StudentRepositoryFactory.cs" />
@@ -79,6 +80,11 @@
       <Project>{2e511a51-8574-4c1d-b543-4c6faa91c63d}</Project>
       <Name>VuelingCrudDB.Domain.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
