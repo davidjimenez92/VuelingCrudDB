@@ -127,7 +127,7 @@
     <value>sp_Delete_Student</value>
   </data>
   <data name="DeleteQuery" xml:space="preserve">
-    <value>DELETE FROM dbo.Students WHERE StudentId=@Id</value>
+    <value>DELETE FROM dbo.Students WHERE Id=@Id</value>
   </data>
   <data name="GetAllProcedure" xml:space="preserve">
     <value>sp_GetAll_Student</value>
@@ -139,6 +139,6 @@
     <value>sp_Update_Student</value>
   </data>
   <data name="UpdateQuery" xml:space="preserve">
-    <value>UPDATE dbo.Students SET Name=@studentName, Surname=@studentSurname WHERE StudentId=@id</value>
+    <value>UPDATE dbo.Students SET Name=@Name, Surname=@Surname WHERE Id=@Id</value>
   </data>
 </root>

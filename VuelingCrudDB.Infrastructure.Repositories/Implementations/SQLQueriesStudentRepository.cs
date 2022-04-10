@@ -11,16 +11,16 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 {
     public class SQLQueriesStudentRepository : IStudentRepository<Student>
     {
-        private readonly ILog _log;
+        //private readonly ILog _log;
         private readonly string connectionString = ConfigurationManager.AppSettings["connectionString"];
 
-        public SQLQueriesStudentRepository(ILog logger)
+        public SQLQueriesStudentRepository()
         {
-            _log = logger;
+            //_log = logger;
         }
         public Student Add(Student entity)
         {
-            _log.Info(entity);
+            //_log.Info(entity);
             using (var connection = new SqlConnection(connectionString))
             {
                 try
@@ -36,22 +36,22 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (IOException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
 
@@ -60,7 +60,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 
         public bool Delete(Student entity)
         {
-            _log.Info(entity);
+            //_log.Info(entity);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -69,27 +69,28 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                     var command = new SqlCommand(QueriesResources.DeleteQuery, connection);
                     command.Parameters.AddWithValue("@Id", entity.Id);
 
+                    connection.Open();
                     command.ExecuteNonQuery();
                     return true;
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {
-                    _log.Error(ex.Message);
+                   // _log.Error(ex.Message);
                     throw;
                 }
                 catch (IOException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
 
@@ -105,12 +106,14 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 {
                     using (SqlCommand command = new SqlCommand(QueriesResources.GetAllQuery, connection))
                     {
+                        connection.Open();
                         var reader = command.ExecuteReader();
                         int ordId = reader.GetOrdinal("Id");
                         int ordGuid = reader.GetOrdinal("Guid");
                         int ordName = reader.GetOrdinal("Name");
                         int ordSurname = reader.GetOrdinal("Surname");
 
+                        
                         while (reader.Read())
                         {
                             var student = new Student()
@@ -128,22 +131,22 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (IOException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
             }
@@ -151,7 +154,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 
         public Student Update(Student entity)
         {
-            _log.Info(entity);
+            //_log.Info(entity);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -169,22 +172,22 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex.Message);
+                   // _log.Error(ex.Message);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (IOException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
             }

@@ -52,6 +52,7 @@
     <Compile Include="Contracts\IStudentRepository.cs" />
     <Compile Include="Contracts\IUpdate.cs" />
     <Compile Include="Implementations\SQLQueriesStudentRepository.cs" />
+    <Compile Include="Implementations\StoredProceduresStudentRepository.cs" />
     <Compile Include="Implementations\StudentRepositoryFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueriesResources.Designer.cs">

@@ -21,7 +21,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
             var root = XElement.Load(configurationFilePath);
             var fileTypes = 
                 from element in root.Elements("Type")
-                where element.Attribute("Id").ToString() == type.ToString()
+                where element.Attribute("Id").Value == type.ToString()
                 select element;
 
             var fileType = fileTypes.First().Element("class").Value;
