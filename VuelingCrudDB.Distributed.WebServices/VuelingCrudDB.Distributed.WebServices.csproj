@@ -72,6 +72,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\AutofacConfig.cs" />
+    <Compile Include="Contracts\IAdd.cs" />
+    <Compile Include="Contracts\IDelete.cs" />
+    <Compile Include="Contracts\IRead.cs" />
+    <Compile Include="Contracts\IUpdate.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -86,6 +90,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -111,6 +118,14 @@
     <ProjectReference Include="..\VuelingCrudDB.Application.Services\VuelingCrudDB.Application.Services.csproj">
       <Project>{CF266A2B-BDC7-4F96-9BAC-DD4078A82B28}</Project>
       <Name>VuelingCrudDB.Application.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VuelingCrudDB.CrossCutting.ProjectSettings\VuelingCrudDB.CrossCutting.ProjectSettings.csproj">
+      <Project>{D4EFA63A-D536-44BE-9E8B-4D7230619191}</Project>
+      <Name>VuelingCrudDB.CrossCutting.ProjectSettings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VuelingCrudDB.Domain.Entities\VuelingCrudDB.Domain.Entities.csproj">
+      <Project>{2E511A51-8574-4C1D-B543-4C6FAA91C63D}</Project>
+      <Name>VuelingCrudDB.Domain.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

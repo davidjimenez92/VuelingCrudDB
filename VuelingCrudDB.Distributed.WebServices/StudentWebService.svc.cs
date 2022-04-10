@@ -1,5 +1,10 @@
-﻿using System;
+﻿using log4net;
+using System;
+using System.Collections.Generic;
+using VuelingCrudDB.Application.Services.Contracts;
+using VuelingCrudDB.CrossCutting.ProjectSettings;
 using VuelingCrudDB.Distributed.WebServices.Contracts;
+using VuelingCrudDB.Domain.Entities;
 
 namespace VuelingCrudDB.Distributed.WebServices
 {
@@ -7,14 +12,125 @@ namespace VuelingCrudDB.Distributed.WebServices
     // NOTE: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione Service1.svc o Service1.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class StudentWebService : IStudentWebService
     {
-        public string GetData(int value)
+        private readonly ILog _logger;
+        private readonly IStudentService<Student> _studentService;
+
+        public StudentWebService(ILog logger, IStudentService<Student> studentService)
         {
-            throw new NotImplementedException();
+            _logger = logger;
+            _studentService = studentService;
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public Student Add(Student entity, EnumTypes type)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _studentService.Add(entity, type);
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (InvalidCastException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (System.IO.IOException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+        }
+
+        public bool Delete(Student entity, EnumTypes type)
+        {
+            try
+            {
+                return _studentService.Delete(entity, type);
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (InvalidCastException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (System.IO.IOException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+        }
+
+        public IEnumerable<Student> GetAll(EnumTypes type)
+        {
+            try
+            {
+                return _studentService.GetAll(type);
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (InvalidCastException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (System.IO.IOException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+        }
+
+        public Student Update(Student entity, EnumTypes type)
+        {
+            try
+            {
+                return _studentService.Update(entity, type);
+            }
+            catch (InvalidOperationException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (System.Data.SqlClient.SqlException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (InvalidCastException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
+            catch (System.IO.IOException ex)
+            {
+                _logger.Error(ex.Message);
+                throw;
+            }
         }
     }
 }
