@@ -11,16 +11,16 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 {
     public class SQLQueriesStudentRepository : IStudentRepository<Student>
     {
-        private readonly ILog _log;
+        //private readonly ILog _log;
         private readonly string connectionString = ConfigurationManager.AppSettings["connectionString"];
 
-        public SQLQueriesStudentRepository(ILog logger)
+        public SQLQueriesStudentRepository()
         {
-            _log = logger;
+            //_log = logger;
         }
         public Student Add(Student entity)
         {
-            _log.Info(entity);
+            //_log.Info(entity);
             using (var connection = new SqlConnection(connectionString))
             {
                 try
@@ -32,26 +32,27 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 
                     connection.Open();
                     command.ExecuteNonQuery();
+                    //_log.Info("done");
                     return entity;
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (IOException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
 
@@ -60,7 +61,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 
         public bool Delete(Student entity)
         {
-            _log.Info(entity);
+            //_log.Info(entity);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -74,22 +75,22 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (IOException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
 
@@ -128,22 +129,22 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (IOException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
             }
@@ -151,7 +152,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 
         public Student Update(Student entity)
         {
-            _log.Info(entity);
+            //_log.Info(entity);
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -169,22 +170,22 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (InvalidOperationException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (SqlException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (InvalidCastException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
                 catch (IOException ex)
                 {
-                    _log.Error(ex.Message);
+                    //_log.Error(ex.Message);
                     throw;
                 }
             }

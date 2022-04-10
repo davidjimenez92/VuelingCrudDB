@@ -9,7 +9,7 @@ namespace VuelingCrudDB.Application.Services.AutofacModules
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<StudentRepositoryFactory>().
-                As<IAbstactStudentRepositoryFactory>();
+                As<IAbstactStudentRepositoryFactory>().InstancePerDependency();
             base.Load(builder);
         }
     }
