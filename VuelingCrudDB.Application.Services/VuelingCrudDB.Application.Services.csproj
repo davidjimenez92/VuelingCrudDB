@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\VuelingCrudDB.Distributed.WebServices\Bin\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,6 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutofacModules\ServicesModule.cs" />
+    <Compile Include="Contracts\IAdd.cs" />
+    <Compile Include="Contracts\IDelete.cs" />
+    <Compile Include="Contracts\IRead.cs" />
+    <Compile Include="Contracts\IStudentService.cs" />
+    <Compile Include="Contracts\IUpdate.cs" />
+    <Compile Include="Implementations\StudentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,9 +58,20 @@
       <Version>6.3.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="Implementations\" />
+    <ProjectReference Include="..\VuelingCrudDB.CrossCutting.ProjectSettings\VuelingCrudDB.CrossCutting.ProjectSettings.csproj">
+      <Project>{D4EFA63A-D536-44BE-9E8B-4D7230619191}</Project>
+      <Name>VuelingCrudDB.CrossCutting.ProjectSettings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VuelingCrudDB.Domain.Entities\VuelingCrudDB.Domain.Entities.csproj">
+      <Project>{2E511A51-8574-4C1D-B543-4C6FAA91C63D}</Project>
+      <Name>VuelingCrudDB.Domain.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VuelingCrudDB.Infrastructure.Repositories\VuelingCrudDB.Infrastructure.Repositories.csproj">
+      <Project>{47AA206A-4303-4F27-A87A-E10315329EC5}</Project>
+      <Name>VuelingCrudDB.Infrastructure.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

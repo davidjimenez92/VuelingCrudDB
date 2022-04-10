@@ -1,31 +1,33 @@
-﻿using log4net;
+﻿
+using log4net;
 using System;
 using System.Collections.Generic;
 using VuelingCrudDB.Application.Services.Contracts;
 using VuelingCrudDB.CrossCutting.ProjectSettings;
-using VuelingCrudDB.Distributed.WebServices.Contracts;
 using VuelingCrudDB.Domain.Entities;
+using VuelingCrudDB.Infrastructure.Repositories.Contracts;
 
-namespace VuelingCrudDB.Distributed.WebServices
+namespace VuelingCrudDB.Application.Services.Implementations
 {
-    // NOTA: puede usar el comando "Rename" del menú "Refactorizar" para cambiar el nombre de clase "Service1" en el código, en svc y en el archivo de configuración.
-    // NOTE: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione Service1.svc o Service1.svc.cs en el Explorador de soluciones e inicie la depuración.
-    public class StudentWebService : IStudentWebService
+    public class StudentService : IStudentService<Student>
     {
         private readonly ILog _logger;
-        private readonly IStudentService<Student> _studentService;
+        private readonly IAbstactStudentRepositoryFactory _abstactStudentRepositoryFactory;
 
-        public StudentWebService(ILog logger, IStudentService<Student> studentService)
+        public StudentService(ILog logger, IAbstactStudentRepositoryFactory abstactStudentRepositoryFactory)
         {
             _logger = logger;
-            _studentService = studentService;
+            _abstactStudentRepositoryFactory = abstactStudentRepositoryFactory;
         }
 
         public Student Add(Student entity, EnumTypes type)
         {
+            _logger.Info(entity);
             try
             {
-                return _studentService.Add(entity, type);
+                IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
+                entity.Guid = Guid.NewGuid();
+                return studentRepository.Add(entity);
             }
             catch (InvalidOperationException ex)
             {
@@ -53,7 +55,8 @@ namespace VuelingCrudDB.Distributed.WebServices
         {
             try
             {
-                return _studentService.Delete(entity, type);
+                IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
+                return studentRepository.Delete(entity);
             }
             catch (InvalidOperationException ex)
             {
@@ -81,7 +84,8 @@ namespace VuelingCrudDB.Distributed.WebServices
         {
             try
             {
-                return _studentService.GetAll(type);
+                IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
+                return studentRepository.GetAll();
             }
             catch (InvalidOperationException ex)
             {
@@ -109,7 +113,8 @@ namespace VuelingCrudDB.Distributed.WebServices
         {
             try
             {
-                return _studentService.Update(entity, type);
+                IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
+                return studentRepository.Update(entity);
             }
             catch (InvalidOperationException ex)
             {

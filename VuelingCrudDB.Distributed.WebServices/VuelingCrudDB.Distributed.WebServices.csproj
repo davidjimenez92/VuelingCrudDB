@@ -72,9 +72,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\AutofacConfig.cs" />
+    <Compile Include="Contracts\IAdd.cs" />
+    <Compile Include="Contracts\IDelete.cs" />
+    <Compile Include="Contracts\IRead.cs" />
+    <Compile Include="Contracts\IUpdate.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204101516021_InitalCreate.cs" />
+    <Compile Include="Migrations\202204101516021_InitalCreate.designer.cs">
+      <DependentUpon>202204101516021_InitalCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="StudentWebService.svc.cs">
       <DependentUpon>StudentWebService.svc</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -86,6 +95,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -112,6 +124,19 @@
       <Project>{CF266A2B-BDC7-4F96-9BAC-DD4078A82B28}</Project>
       <Name>VuelingCrudDB.Application.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VuelingCrudDB.CrossCutting.ProjectSettings\VuelingCrudDB.CrossCutting.ProjectSettings.csproj">
+      <Project>{D4EFA63A-D536-44BE-9E8B-4D7230619191}</Project>
+      <Name>VuelingCrudDB.CrossCutting.ProjectSettings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VuelingCrudDB.Domain.Entities\VuelingCrudDB.Domain.Entities.csproj">
+      <Project>{2E511A51-8574-4C1D-B543-4C6FAA91C63D}</Project>
+      <Name>VuelingCrudDB.Domain.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202204101516021_InitalCreate.resx">
+      <DependentUpon>202204101516021_InitalCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

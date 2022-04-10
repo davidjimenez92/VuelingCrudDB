@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Types>
+  <Type Id="SqlQueries">
+    <class>VuelingCrudDB.Infrastructure.Repositories.Implementations.SQLQueriesStudentRepository</class>
+  </Type>
+  <Type Id="StoredProcedures">
+    <class>VuelingCrudDB.Infrastructure.Repositories.Implementations.StoredProceduresStudentRepository</class>
+  </Type>
+  <Type Id="EntityFrameworkCF">
+    <class>VuelingCrudDB.Infrastructure.Repositories.Implementations.EFCFStudentRepository</class>
+  </Type>
+</Types>
