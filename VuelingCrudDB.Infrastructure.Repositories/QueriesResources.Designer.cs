@@ -88,7 +88,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a DELETE FROM dbo.Students WHERE StudentId=@Id.
+        ///   Busca una cadena traducida similar a DELETE FROM dbo.Students WHERE Id=@Id.
         /// </summary>
         internal static string DeleteQuery {
             get {
@@ -124,7 +124,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a UPDATE dbo.Students SET Name=@studentName, Surname=@studentSurname WHERE StudentId=@id.
+        ///   Busca una cadena traducida similar a UPDATE dbo.Students SET Name=@Name, Surname=@Surname WHERE Id=@Id.
         /// </summary>
         internal static string UpdateQuery {
             get {
