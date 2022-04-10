@@ -32,6 +32,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 
                     connection.Open();
                     command.ExecuteNonQuery();
+                    //_log.Info("done");
                     return entity;
                 }
                 catch (InvalidOperationException ex)
@@ -85,7 +86,6 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
                 }
                 catch (InvalidCastException ex)
                 {
-                   // _log.Error(ex.Message);
                     throw;
                 }
                 catch (IOException ex)

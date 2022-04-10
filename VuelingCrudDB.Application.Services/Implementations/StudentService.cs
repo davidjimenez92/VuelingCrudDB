@@ -11,18 +11,18 @@ namespace VuelingCrudDB.Application.Services.Implementations
 {
     public class StudentService : IStudentService<Student>
     {
-        private readonly ILog _logger;
+        //private readonly ILog _logger;
         private readonly IAbstactStudentRepositoryFactory _abstactStudentRepositoryFactory;
 
-        public StudentService(ILog logger, IAbstactStudentRepositoryFactory abstactStudentRepositoryFactory)
+        public StudentService(IAbstactStudentRepositoryFactory abstactStudentRepositoryFactory)
         {
-            _logger = logger;
+            //_logger = logger;
             _abstactStudentRepositoryFactory = abstactStudentRepositoryFactory;
         }
 
         public Student Add(Student entity, EnumTypes type)
         {
-            _logger.Info(entity);
+           // _logger.Info(entity);
             try
             {
                 IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
@@ -31,22 +31,22 @@ namespace VuelingCrudDB.Application.Services.Implementations
             }
             catch (InvalidOperationException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
             catch (InvalidCastException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
             catch (System.IO.IOException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
         }
@@ -60,22 +60,22 @@ namespace VuelingCrudDB.Application.Services.Implementations
             }
             catch (InvalidOperationException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
             catch (InvalidCastException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
             catch (System.IO.IOException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
         }
@@ -89,22 +89,22 @@ namespace VuelingCrudDB.Application.Services.Implementations
             }
             catch (InvalidOperationException ex)
             {
-                _logger.Error(ex.Message);
+                //_logger.Error(ex.Message);
                 throw;
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
             catch (InvalidCastException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
             catch (System.IO.IOException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
         }
@@ -118,22 +118,22 @@ namespace VuelingCrudDB.Application.Services.Implementations
             }
             catch (InvalidOperationException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
             catch (InvalidCastException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
             catch (System.IO.IOException ex)
             {
-                _logger.Error(ex.Message);
+               // _logger.Error(ex.Message);
                 throw;
             }
         }
