@@ -54,7 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-  <PackageReference Include="Autofac.log4net">
+    <PackageReference Include="Autofac.log4net">
       <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="Autofac">

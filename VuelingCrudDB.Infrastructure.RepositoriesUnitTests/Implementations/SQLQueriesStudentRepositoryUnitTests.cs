@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VuelingCrudDB.Domain.Entities;
 using Autofac.Extras.Moq;
-using VuelingCrudDB.Infrastructure.Repositories.Contracts;
 using System.Collections.Generic;
 using System.Linq;
+using VuelingCrudDB.Infrastructure.Repositories.Contracts;
 
 namespace VuelingCrudDB.Infrastructure.Repositories.Implementations.Unit.Tests
 {
@@ -119,7 +119,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations.Unit.Tests
                 mock.Mock<IStudentRepository<Student>>().
                     Verify(repository => repository.GetAll());
 
-                Assert.IsTrue(expectedStudents.Count() == 0);
+                Assert.IsTrue(expectedStudents.Any());
             }
         }
 

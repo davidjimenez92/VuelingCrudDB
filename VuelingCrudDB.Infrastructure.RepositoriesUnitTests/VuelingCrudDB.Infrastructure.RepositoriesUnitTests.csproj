@@ -59,6 +59,10 @@
       <Project>{2E511A51-8574-4C1D-B543-4C6FAA91C63D}</Project>
       <Name>VuelingCrudDB.Domain.Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VuelingCrudDB.Infrastructure.Repositories\VuelingCrudDB.Infrastructure.Repositories.csproj">
+      <Project>{47AA206A-4303-4F27-A87A-E10315329EC5}</Project>
+      <Name>VuelingCrudDB.Infrastructure.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac.Extras.Moq">
