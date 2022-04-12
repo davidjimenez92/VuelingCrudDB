@@ -117,28 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddProcedure" xml:space="preserve">
-    <value>sp_Add_Student</value>
-  </data>
-  <data name="AddQuery" xml:space="preserve">
-    <value>INSERT INTO dbo.Students (Guid, Name, Surname) VALUES(@studentGuid, @studentName, @studentSurname)</value>
-  </data>
-  <data name="DeleteProcedure" xml:space="preserve">
-    <value>sp_Delete_Student</value>
-  </data>
-  <data name="DeleteQuery" xml:space="preserve">
-    <value>DELETE FROM dbo.Students WHERE Id=@Id</value>
-  </data>
-  <data name="GetAllProcedure" xml:space="preserve">
-    <value>sp_GetAll_Student</value>
-  </data>
-  <data name="GetAllQuery" xml:space="preserve">
-    <value>SELECT * FROM dbo.Students</value>
-  </data>
-  <data name="UpdateProcedure" xml:space="preserve">
-    <value>sp_Update_Student</value>
-  </data>
-  <data name="UpdateQuery" xml:space="preserve">
-    <value>UPDATE dbo.Students SET Name=@Name, Surname=@Surname WHERE Id=@Id</value>
+  <data name="ExceptionNotNullType" xml:space="preserve">
+    <value>El tipo no puede ser nulo</value>
   </data>
 </root>

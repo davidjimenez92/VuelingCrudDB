@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VuelingCrudDB.Infrastructure.Repositories {
+namespace VuelingCrudDB.CrossCutting.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace VuelingCrudDB.Infrastructure.Repositories {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class QueriesResources {
+    internal class QueryResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal QueriesResources() {
+        internal QueryResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VuelingCrudDB.Infrastructure.Repositories.QueriesResources", typeof(QueriesResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("VuelingCrudDB.CrossCutting.Resources.QueryResource", typeof(QueryResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -111,6 +111,24 @@ namespace VuelingCrudDB.Infrastructure.Repositories {
         internal static string GetAllQuery {
             get {
                 return ResourceManager.GetString("GetAllQuery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a sp_GetByGuid_Student.
+        /// </summary>
+        internal static string GetByGuidProcedure {
+            get {
+                return ResourceManager.GetString("GetByGuidProcedure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a SELECT * FROM dbo.Students WHERE Guid=@stdGuid.
+        /// </summary>
+        internal static string GetByGuidQuery {
+            get {
+                return ResourceManager.GetString("GetByGuidQuery", resourceCulture);
             }
         }
         

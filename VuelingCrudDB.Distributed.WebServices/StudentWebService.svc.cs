@@ -21,64 +21,97 @@ namespace VuelingCrudDB.Distributed.WebServices
             _studentService = studentService;
         }
 
-        public Student Add(Student entity, EnumTypes type)
+        public Student Add(string name, string surname, EnumTypes type)
         {
+            _logger.Info($"Name: {name}");
+            _logger.Info($"Surname: {surname}");
+            _logger.Info($"Type: {type}");
             try
             {
-                return _studentService.Add(entity, type);
+                var student = new Student()
+                {
+                    Name = name,
+                    Surname = surname,
+                };
+                
+                var result = _studentService.Add(student, type);
+                _logger.Info($"Inserted: {result}");
+
+                return result;
             }
             catch (InvalidOperationException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (InvalidCastException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (System.IO.IOException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
         }
 
-        public bool Delete(Student entity, EnumTypes type)
+        public bool Delete(int id, EnumTypes type)
         {
+            _logger.Info($"Id: {id}");
+            _logger.Info($"type: {type}");
+
             try
             {
-                return _studentService.Delete(entity, type);
+                var student = new Student()
+                {
+                    Id = id,
+                };
+
+                var result = _studentService.Delete(student, type);
+                _logger.Info($"Deleted: {result}");
+
+                return result;
             }
             catch (InvalidOperationException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (InvalidCastException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (System.IO.IOException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
         }
 
         public IEnumerable<Student> GetAll(EnumTypes type)
         {
+            _logger.Info($"Type: {type}");
+
             try
             {
                 return _studentService.GetAll(type);
@@ -86,49 +119,70 @@ namespace VuelingCrudDB.Distributed.WebServices
             catch (InvalidOperationException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (InvalidCastException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (System.IO.IOException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
         }
 
-        public Student Update(Student entity, EnumTypes type)
+        public Student Update(string name, string surname, EnumTypes type)
         {
+            _logger.Info($"Name: {name}");
+            _logger.Info($"Surname: {surname}");
+            _logger.Info($"Type: {type}");
+
             try
             {
-                return _studentService.Update(entity, type);
+                var student = new Student()
+                {
+                    Name = name,
+                    Surname = surname,
+                };
+
+                var result = _studentService.Update(student, type);
+                _logger.Info($"Updated: {result}");
+
+                return result;
             }
             catch (InvalidOperationException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (System.Data.SqlClient.SqlException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (InvalidCastException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
             catch (System.IO.IOException ex)
             {
                 _logger.Error(ex.Message);
+                _logger.Error(ex.StackTrace);
                 throw;
             }
         }
