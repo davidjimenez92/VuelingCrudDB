@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CF266A2B-BDC7-4F96-9BAC-DD4078A82B28}</ProjectGuid>
+    <ProjectGuid>{546DBB5C-7A0A-4E4F-9796-FC199EB9366C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VuelingCrudDB.Application.Services</RootNamespace>
-    <AssemblyName>VuelingCrudDB.Application.Services</AssemblyName>
+    <RootNamespace>VuelingCrudDB.CrossCutting.Resources</RootNamespace>
+    <AssemblyName>VuelingCrudDB.CrossCutting.Resources</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\VuelingCrudDB.Distributed.WebServices\Bin\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,37 +41,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutofacModules\ServicesModule.cs" />
-    <Compile Include="Contracts\IAdd.cs" />
-    <Compile Include="Contracts\IDelete.cs" />
-    <Compile Include="Contracts\IRead.cs" />
-    <Compile Include="Contracts\IStudentService.cs" />
-    <Compile Include="Contracts\IUpdate.cs" />
-    <Compile Include="Implementations\StudentService.cs" />
+    <Compile Include="ExceptionResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExceptionResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QueryResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QueryResources.cs" />
   </ItemGroup>
   <ItemGroup>
-  <PackageReference Include="Autofac.log4net">
-      <Version>6.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="Autofac">
-      <Version>6.3.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\VuelingCrudDB.CrossCutting.ProjectSettings\VuelingCrudDB.CrossCutting.ProjectSettings.csproj">
-      <Project>{D4EFA63A-D536-44BE-9E8B-4D7230619191}</Project>
-      <Name>VuelingCrudDB.CrossCutting.ProjectSettings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VuelingCrudDB.Domain.Entities\VuelingCrudDB.Domain.Entities.csproj">
-      <Project>{2E511A51-8574-4C1D-B543-4C6FAA91C63D}</Project>
-      <Name>VuelingCrudDB.Domain.Entities</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VuelingCrudDB.Infrastructure.Repositories\VuelingCrudDB.Infrastructure.Repositories.csproj">
-      <Project>{47AA206A-4303-4F27-A87A-E10315329EC5}</Project>
-      <Name>VuelingCrudDB.Infrastructure.Repositories</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="ExceptionResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExceptionResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QueryResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>QueryResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

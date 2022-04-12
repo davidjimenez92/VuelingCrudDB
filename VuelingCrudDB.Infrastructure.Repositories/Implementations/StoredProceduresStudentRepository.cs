@@ -8,6 +8,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VuelingCrudDB.CrossCutting.ProjectSettings;
+using VuelingCrudDB.CrossCutting.Resources;
 using VuelingCrudDB.Domain.Entities;
 using VuelingCrudDB.Infrastructure.Repositories.Contracts;
 
@@ -15,190 +17,111 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 {
     public class StoredProceduresStudentRepository : IStudentRepository<Student>
     {
-        //private readonly ILog _log;
-        private readonly string connectionString = ConfigurationManager.AppSettings["connectionString"];
+        private readonly VuelingCrudDBConfig config = ConfigurationManager.GetSection(nameof(VuelingCrudDBConfig)) as VuelingCrudDBConfig;
 
-        public StoredProceduresStudentRepository()
-        {
-            //_log = log;
-        }
-                  
+
         public Student Add(Student entity)
         {
-            //_log.Info(entity);
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(config.ConnectionString))
             {
-                try
-                {
-                    SqlCommand command = new SqlCommand(QueriesResources.AddProcedure, connection);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@stdGuid", entity.Guid);
-                    command.Parameters.AddWithValue("@stdName", entity.Name);
-                    command.Parameters.AddWithValue("stdSurname", entity.Surname);
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    return entity;
-                }
-                catch (InvalidOperationException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (SqlException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (InvalidCastException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (IOException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
+                SqlCommand command = new SqlCommand(QueryResources.AddProcedure, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@stdGuid", entity.Guid);
+                command.Parameters.AddWithValue("@stdName", entity.Name);
+                command.Parameters.AddWithValue("stdSurname", entity.Surname);
 
+                connection.Open();
+                command.ExecuteNonQuery();
+                return GetByGuid(entity.Guid);
             }
         }
 
         public bool Delete(Student entity)
         {
-            //_log.Info(entity);
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                try
-                {
-                    var command = new SqlCommand(QueriesResources.DeleteProcedure, connection);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@stdId", entity.Id);
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    return true;
-                }
-                catch (InvalidOperationException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (SqlException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (InvalidCastException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (IOException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
+                var command = new SqlCommand(QueryResources.DeleteProcedure, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@stdId", entity.Id);
 
+                connection.Open();
+                command.ExecuteNonQuery();
+                return true;
             }
         }
 
         public IEnumerable<Student> GetAll()
         {
             var result = new List<Student>();
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-                try
+                using (SqlCommand command = new SqlCommand(QueryResources.GetAllProcedure, connection))
                 {
-                    using (SqlCommand command = new SqlCommand(QueriesResources.GetAllProcedure, connection))
+                    connection.Open();
+
+                    command.CommandType = CommandType.StoredProcedure;
+                    var reader = command.ExecuteReader();
+                    int ordId = reader.GetOrdinal("Id");
+                    int ordGuid = reader.GetOrdinal("Guid");
+                    int ordName = reader.GetOrdinal("Name");
+                    int ordSurname = reader.GetOrdinal("Surname");
+
+                    while (reader.Read())
                     {
-                        connection.Open();
-
-                        command.CommandType = CommandType.StoredProcedure;
-                        var reader = command.ExecuteReader();
-                        int ordId = reader.GetOrdinal("Id");
-                        int ordGuid = reader.GetOrdinal("Guid");
-                        int ordName = reader.GetOrdinal("Name");
-                        int ordSurname = reader.GetOrdinal("Surname");
-
-                        while (reader.Read())
+                        var student = new Student()
                         {
-                            var student = new Student()
-                            {
-                                Id = reader.GetInt32(ordId),
-                                Guid = reader.GetGuid(ordGuid),
-                                Name = reader.GetString(ordName),
-                                Surname = reader.GetString(ordSurname)
-                            };
-                            result.Add(student);
-                        }
-
-                        return result;
+                            Id = reader.GetInt32(ordId),
+                            Guid = reader.GetGuid(ordGuid),
+                            Name = reader.GetString(ordName),
+                            Surname = reader.GetString(ordSurname)
+                        };
+                        result.Add(student);
                     }
+
+                    return result;
                 }
-                catch (InvalidOperationException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (SqlException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (InvalidCastException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (IOException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
+
             }
         }
 
         public Student Update(Student entity)
         {
-            //_log.Info(entity);
 
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(config.ConnectionString))
             {
-                try
-                {
-                    SqlCommand command = new SqlCommand(QueriesResources.UpdateProcedure, connection);
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@stdId", entity.Id);
-                    command.Parameters.AddWithValue("@stdName", entity.Name);
-                    command.Parameters.AddWithValue("@stdSurname", entity.Surname);
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    return entity;
-                }
-                catch (InvalidOperationException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (SqlException ex)
-                {
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (InvalidCastException ex)
-                {                    
-                    //_log.Error(ex);
-                    throw;
-                }
-                catch (IOException ex)
-                {                    
-                    //_log.Error(ex);
-                    throw;
-                }
+                SqlCommand command = new SqlCommand(QueryResources.UpdateProcedure, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@stdId", entity.Id);
+                command.Parameters.AddWithValue("@stdName", entity.Name);
+                command.Parameters.AddWithValue("@stdSurname", entity.Surname);
 
+                connection.Open();
+                command.ExecuteNonQuery();
+                return GetByGuid(entity.Guid);
+            }
+        }
+
+        private Student GetByGuid(Guid guid)
+        {
+            using (var connection = new SqlConnection(config.ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(QueryResources.GetByGuidProcedure, connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@stdGuid", guid);
+                connection.Open();
+                var reader = command.ExecuteReader(); 
+                reader.Read();
+
+                return new Student()
+                {
+                    Id = reader.GetInt32(0),
+                    Guid = reader.GetGuid(1),
+                    Name = reader.GetString(2),
+                    Surname = reader.GetString(3)
+                };
             }
         }
     }

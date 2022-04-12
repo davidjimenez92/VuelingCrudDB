@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Autofac.log4net;
 using VuelingCrudDB.Infrastructure.Repositories.Contracts;
 using VuelingCrudDB.Infrastructure.Repositories.Implementations;
 
@@ -10,6 +11,8 @@ namespace VuelingCrudDB.Application.Services.AutofacModules
         {
             builder.RegisterType<StudentRepositoryFactory>().
                 As<IAbstactStudentRepositoryFactory>();
+
+            builder.RegisterModule<Log4NetModule>();
             base.Load(builder);
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Linq;
+using Autofac.log4net;
 using System.Text;
 using System.Threading.Tasks;
 using VuelingCrudDB.Domain.Entities;
@@ -17,7 +18,7 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
             using(var context = new StudentContext())
             {
                 var studentInserted = context.Students.Add(entity);
-				SaveInContext(context);
+				context.SaveChanges();
 				return studentInserted;
             }
         }
@@ -28,9 +29,9 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
             {
 				var studentToDelete = context.Students.Find(entity.Id);
 				context.Students.Remove(studentToDelete);
-				SaveInContext(context);
+				context.SaveChanges();
 
-				return context.Students.Find(entity.Id) == null;
+				return true;
             }
         }
 
@@ -51,38 +52,10 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 				studentToUpdate.Name = entity.Name;
 				studentToUpdate.Surname = entity.Surname;
 
-				SaveInContext(context);
+				context.SaveChanges();
 				return studentToUpdate;
             }
         }
 
-		public void SaveInContext(StudentContext vContext)
-		{
-			try
-			{
-				vContext.SaveChanges();
-			}
-			catch (DbUpdateException due)
-			{
-				throw;
-			}
-			catch (DbEntityValidationException deve)
-			{
-				throw;
-			}
-			catch (NotSupportedException nse)
-			{
-				throw;
-			}
-			catch (ObjectDisposedException ode)
-			{
-				throw;
-			}
-			catch (InvalidOperationException ioe)
-			{
-				throw;
-			}
-
-		}
 	}
 }
