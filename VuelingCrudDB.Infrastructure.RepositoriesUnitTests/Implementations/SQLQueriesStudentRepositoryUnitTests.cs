@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VuelingCrudDB.Domain.Entities;
 using Autofac.Extras.Moq;
-using VuelingCrudDB.Infrastructure.Repositories.Contracts;
 using System.Collections.Generic;
 using System.Linq;
+using VuelingCrudDB.Infrastructure.Repositories.Contracts;
 
 namespace VuelingCrudDB.Infrastructure.Repositories.Implementations.Unit.Tests
 {

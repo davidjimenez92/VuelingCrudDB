@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VuelingCrudDB.CrossCutting.Resources
 {
-    public class QueryResources
+    public static class QueryResources
     {
         public static string AddProcedure
         {
