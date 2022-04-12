@@ -11,131 +11,51 @@ namespace VuelingCrudDB.Application.Services.Implementations
 {
     public class StudentService : IStudentService<Student>
     {
-        //private readonly ILog _logger;
+        private readonly ILog _logger;
         private readonly IAbstactStudentRepositoryFactory _abstactStudentRepositoryFactory;
 
         public StudentService(IAbstactStudentRepositoryFactory abstactStudentRepositoryFactory)
         {
-            //_logger = logger;
-            _abstactStudentRepositoryFactory = abstactStudentRepositoryFactory;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger)); 
+            _abstactStudentRepositoryFactory = abstactStudentRepositoryFactory ?? throw new NullReferenceException(nameof(abstactStudentRepositoryFactory));
         }
 
         public Student Add(Student entity, EnumTypes type)
         {
-           // _logger.Info(entity);
-            try
-            {
-                IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
-                entity.Guid = Guid.NewGuid();
-                return studentRepository.Add(entity);
-            }
-            catch (InvalidOperationException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
-            catch (System.Data.SqlClient.SqlException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
-            catch (InvalidCastException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
-            catch (System.IO.IOException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
+            _logger.Info(entity);
+
+            if(entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
+            entity.Guid = Guid.NewGuid();
+            _logger.Info($"Student to insert: {entity}");
+            return studentRepository.Add(entity);
         }
 
         public bool Delete(Student entity, EnumTypes type)
         {
-            try
-            {
-                IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
-                return studentRepository.Delete(entity);
-            }
-            catch (InvalidOperationException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
-            catch (System.Data.SqlClient.SqlException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
-            catch (InvalidCastException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
-            catch (System.IO.IOException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
+            return studentRepository.Delete(entity);
         }
 
         public IEnumerable<Student> GetAll(EnumTypes type)
         {
-            try
-            {
-                IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
-                return studentRepository.GetAll();
-            }
-            catch (InvalidOperationException ex)
-            {
-                //_logger.Error(ex.Message);
-                throw;
-            }
-            catch (System.Data.SqlClient.SqlException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
-            catch (InvalidCastException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
-            catch (System.IO.IOException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
+            IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
+
+            return studentRepository.GetAll();
         }
 
         public Student Update(Student entity, EnumTypes type)
         {
-            try
-            {
-                IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
-                return studentRepository.Update(entity);
-            }
-            catch (InvalidOperationException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
-            catch (System.Data.SqlClient.SqlException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
-            catch (InvalidCastException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
-            catch (System.IO.IOException ex)
-            {
-               // _logger.Error(ex.Message);
-                throw;
-            }
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+
+            IStudentRepository<Student> studentRepository = _abstactStudentRepositoryFactory.Create(type);
+            return studentRepository.Update(entity);
         }
     }
 }

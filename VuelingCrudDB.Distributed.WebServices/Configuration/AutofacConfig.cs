@@ -20,6 +20,7 @@ namespace VuelingCrudDB.Distributed.WebServices.Configuration
 
             builder.RegisterModule<Log4NetModule>();
             builder.RegisterModule(new ServicesModule());
+
             builder.RegisterType<StudentService>().
                 As<IStudentService<Student>>().InstancePerDependency();
             builder.RegisterType<StudentWebService>()
