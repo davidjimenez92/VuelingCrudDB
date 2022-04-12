@@ -1,9 +1,15 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 
 namespace VuelingCrudDB.Domain.Entities
 {
+    [Table("StudentCF")]
+    [DataContract]
     public class Student
     {
+        [Key]
         public int Id { get; set; }
         public Guid Guid { get; set; }
         public String Name { get; set; }

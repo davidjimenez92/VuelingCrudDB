@@ -18,10 +18,10 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
         {
             var configurationFilePath = ConfigurationManager.AppSettings["configurationFilePath"];
             var assemby = Assembly.GetExecutingAssembly();
-            var root = XElement.Load(configurationFilePath);
-            var fileTypes = 
+            XElement root = XElement.Load(configurationFilePath);
+            IEnumerable<XElement> fileTypes = 
                 from element in root.Elements("Type")
-                where element.Attribute("Id").ToString() == type.ToString()
+                where element.Attribute("Id").Value == type.ToString()
                 select element;
 
             var fileType = fileTypes.First().Element("class").Value;

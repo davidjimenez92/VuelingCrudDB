@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF;
+using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -9,9 +11,12 @@ using VuelingCrudDB.CrossCutting.ProjectSettings;
 namespace VuelingCrudDB.Distributed.WebServices.Contracts
 {
     [ServiceContract]
-    public interface IDelete<T>
+    [ValidationBehavior]
+    public interface IDelete
     {
         [OperationContract]
-        bool Delete(T entity, EnumTypes type);
+        [FaultContract(typeof(ValidationFault))]
+        bool Delete([NotNullValidator(MessageTemplate = "El id no puede ser nulo")] int id,
+            [NotNullValidator(MessageTemplate = "El tipo no puede ser nulo")] EnumTypes type);
     }
 }
