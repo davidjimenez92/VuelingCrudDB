@@ -14,7 +14,7 @@ namespace VuelingCrudDB.Application.Services.Implementations
         private readonly ILog _logger;
         private readonly IAbstactStudentRepositoryFactory _abstactStudentRepositoryFactory;
 
-        public StudentService(ILog logger, IAbstactStudentRepositoryFactory abstactStudentRepositoryFactory)
+        public StudentService(IAbstactStudentRepositoryFactory abstactStudentRepositoryFactory)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger)); 
             _abstactStudentRepositoryFactory = abstactStudentRepositoryFactory ?? throw new NullReferenceException(nameof(abstactStudentRepositoryFactory));

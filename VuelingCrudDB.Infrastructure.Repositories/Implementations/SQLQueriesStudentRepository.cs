@@ -18,7 +18,6 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
         {
             using (var connection = new SqlConnection(config.ConnectionString))
             {
-
                 SqlCommand command = new SqlCommand(QueryResources.AddQuery, connection);
                 command.Parameters.AddWithValue("@studentGuid", entity.Guid);
                 command.Parameters.AddWithValue("@studentName", entity.Name);
@@ -37,14 +36,12 @@ namespace VuelingCrudDB.Infrastructure.Repositories.Implementations
 
             using (SqlConnection connection = new SqlConnection(config.ConnectionString))
             {
-
                 var command = new SqlCommand(QueryResources.DeleteQuery, connection);
                 command.Parameters.AddWithValue("@Id", entity.Id);
 
                 connection.Open();
                 command.ExecuteNonQuery();
                 return true;
-
             }
         }
 
